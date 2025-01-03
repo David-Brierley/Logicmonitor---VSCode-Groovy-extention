@@ -1,6 +1,4 @@
-// Import the VS Code API
 const vscode = require('vscode');
-// Import extension modules
 const { fetchDevices, clearSelectedDevice, displaySelectedDevice } = require('./deviceService');
 const { runScriptOnDevice, runScriptOnNewDevice } = require('./scriptRunnerService');
 const { updateApiKey, updateCompanyName, clearConfig, configure, clearApiKey, clearCompanyName } = require('./utils');
@@ -152,7 +150,7 @@ function registerConfigurationCommands(context) {
 }
 
 /**
- * This method is called when your extension is deactivated
+ * This method is called when your extension is deactivated (Can probably go? ...)
  */
 function deactivate() {}
 
