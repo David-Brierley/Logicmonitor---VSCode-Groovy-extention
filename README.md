@@ -1,5 +1,7 @@
 # logicmonitor-groovy-runner README
 
+> ⚠️ This is my 1st time making a VSCode extension so any contributions would be welcome, I still need to complete the tests for this and publish to the exchange, I will likely chip away at this as and when I get time. Any feedback is appreciated !!!!
+
 Run Groovy scripts against a specific device on Logicmonitor using VS Code allowing development in your IDE.
 This means that you can use any syntax highlighting or any other extension in your IDE.
 
