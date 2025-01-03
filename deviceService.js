@@ -1,7 +1,7 @@
 const axios = require('axios');
 const vscode = require('vscode');
 const settings = require('./settings.js');
-const { ensureCredentials } = require('./utils'); // Ensure credentials is still useful for prompting users if missing
+const { ensureCredentials } = require('./utils');
 
 const fetchDevices = async (context) => {
     /**
