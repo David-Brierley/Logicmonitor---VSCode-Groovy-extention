@@ -1,0 +1,183 @@
+{
+  "name": "logicmonitor-groovy-runner",
+  "displayName": "LogicMonitor Groovy Runner",
+  "description": "Run LM Groovy Scripts from VS Code against your LogicMonitor account.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:David-Brierley/Logicmonitor---VSCode-Groovy-extention.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onCommand:logicmonitor-groovy-runner.fetchDevices",
+    "onCommand:logicmonitor-groovy-runner.runScript",
+    "onCommand:logicmonitor-groovy-runner.updateApiKey",
+    "onCommand:logicmonitor-groovy-runner.updateCompanyName",
+    "onCommand:logicmonitor-groovy-runner.configure",
+    "onCommand:logicmonitor-groovy-runner.clearConfig",
+    "onCommand:logicmonitor-groovy-runner.clearSelectedDevice",
+    "onCommand:logicmonitor-groovy-runner.clearApiKey",
+    "onCommand:logicmonitor-groovy-runner.displaySelectedDevice",
+    "onCommand:logicmonitor-groovy-runner.runScriptOnNewDevice"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "logicmonitor-groovy-runner.fetchDevices",
+        "title": "Logicmonitor - Select Device"
+      },
+      {
+        "command": "logicmonitor-groovy-runner.runScript",
+        "title": "Logicmonitor - Run Script (Selected Device)"
+      },
+      {
+        "command": "logicmonitor-groovy-runner.runScriptOnNewDevice",
+        "title": "Logicmonitor - Run Script (Select New Device)"
+      },
+      {
+        "command": "logicmonitor-groovy-runner.updateApiKey",
+        "title": "Logicmonitor - Change API Key"
+      },
+      {
+        "command": "logicmonitor-groovy-runner.updateCompanyName",
+        "title": "Logicmonitor - Change Company Name"
+      },
+      {
+        "command": "logicmonitor-groovy-runner.configure",
+        "title": "Logicmonitor - Configure"
+      },
+      {
+        "command": "logicmonitor-groovy-runner.clearConfig",
+        "title": "Logicmonitor - Clear Configuration (Company Name and API Key)"
+      },
+      {
+        "command": "logicmonitor-groovy-runner.clearSelectedDevice",
+        "title": "Logicmonitor - Clear Selected Device"
+      },
+      {
+        "command": "logicmonitor-groovy-runner.clearApiKey",
+        "title": "Logicmonitor - Clear API Key"
+      },
+      {
+        "command": "logicmonitor-groovy-runner.displaySelectedDevice",
+        "title": "Logicmonitor - Display Selected Device"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "logicmonitor-groovy-runner.runScript",
+          "when": "editorTextFocus",
+          "group": "LogicMonitor"
+        },
+        {
+          "command": "logicmonitor-groovy-runner.runScriptOnNewDevice",
+          "when": "editorTextFocus",
+          "group": "LogicMonitor"
+        },
+        {
+          "command": "logicmonitor-groovy-runner.fetchDevices",
+          "when": "editorTextFocus",
+          "group": "LogicMonitor"
+        },
+        {
+          "command": "logicmonitor-groovy-runner.updateApiKey",
+          "when": "editorTextFocus",
+          "group": "LogicMonitor"
+        },
+        {
+          "command": "logicmonitor-groovy-runner.updateCompanyName",
+          "when": "editorTextFocus",
+          "group": "LogicMonitor"
+        },
+        {
+          "command": "logicmonitor-groovy-runner.clearConfig",
+          "when": "editorTextFocus",
+          "group": "LogicMonitor"
+        },
+        {
+          "command": "logicmonitor-groovy-runner.clearSelectedDevice",
+          "when": "editorTextFocus",
+          "group": "LogicMonitor"
+        },
+        {
+          "command": "logicmonitor-groovy-runner.clearApiKey",
+          "when": "editorTextFocus",
+          "group": "LogicMonitor"
+        },
+        {
+          "command": "logicmonitor-groovy-runner.displaySelectedDevice",
+          "when": "editorTextFocus",
+          "group": "LogicMonitor"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "LogicMonitor Groovy Runner",
+      "properties": {
+        "logicmonitor.apiVersion": {
+          "type": "number",
+          "default": 3,
+          "description": "API version for LogicMonitor. (3 is the latest version, sets the X-Version header)"
+        },
+        "logicmonitor.sizeValue": {
+          "type": "number",
+          "default": 50,
+          "description": "Size value for LogicMonitor API calls. (GET Requests)"
+        },
+        "logicmonitor.apiProtocol": {
+          "type": "string",
+          "default": "https",
+          "description": "Protocol to use for LogicMonitor API (e.g., https, should almost always be https)."
+        },
+        "logicmonitor.apiDomain": {
+          "type": "string",
+          "default": "logicmonitor.com",
+          "description": "API domain for LogicMonitor."
+        },
+        "logicmonitor.apiPath": {
+          "type": "string",
+          "default": "santaba/rest",
+          "description": "API path for LogicMonitor REST calls."
+        },
+        "logicmonitor.pollEvery": {
+          "type": "number",
+          "default": 3000,
+          "description": "Polling interval in milliseconds for checking script execution results."
+        },
+        "logicmonitor.clearDeviceOnRestart": {
+          "type": "boolean",
+          "default": false,
+          "description": "Clear the selected device when the extension is restarted. (Forcing you to select a new device)"
+        },
+        "logicmonitor.clearApiKeyOnRestart": {
+          "type": "boolean",
+          "default": false,
+          "description": "Clear the API key when the extension is restarted. (Forcing you to re-enter the API key)"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "axios": "^1.5.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "eslint": "^9.16.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
